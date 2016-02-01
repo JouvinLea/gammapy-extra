@@ -19,8 +19,8 @@ excl = ExclusionMask.from_fits(exclusion_file)
 bounds = EnergyBounds.equal_log_spacing(1, 10, 40, unit='TeV')
 
 obs = [int(file[6:11]) for file in glob('run*.fits')]
-ds = DataStore.from_dir('/Users/jouvin/Desktop/these/WorkGAMMAPI/IRF/CrabEventList/Crab')
-ds1 = DataStore.from_dir('/Users/jouvin/Desktop/these/WorkGAMMAPI/IRF/CrabEventList/Crab')
+ds = DataStore.from_dir('/Users/jouvin/Desktop/these/test_Gammapy/gammapy-extra/datasets/Crab-hapFR')
+ds1 = DataStore.from_dir('/Users/jouvin/Desktop/these/test_Gammapy/gammapy-extra/datasets/Crab-hapFR')
 
 ana = SpectrumAnalysis(datastore=ds, obs=obs, on_region=on_region,
                        bkg_method=bkg_method, exclusion=excl, ebounds=bounds)
@@ -55,7 +55,7 @@ fit.energy_threshold_high = '10 TeV'
 fit.run(method='sherpa')
 
 print "GROUPING"
-pha_band = glob('groups1/pha*')
+pha_band = glob('groups/pha*')
 fitband = SpectrumFit(pha_band)
 fitband.model = 'PL'
 fitband.energy_threshold_low = '100 GeV'
